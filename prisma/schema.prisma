@@ -1,0 +1,83 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+enum BoardType {
+  SPRINT
+  KANBAN
+}
+
+enum TicketStatus {
+  TODO
+  IN_PROGRESS
+  IN_REVIEW
+  DONE
+}
+
+model Board {
+  id          String        @id @default(cuid())
+  type        BoardType
+  title       String
+  description String?
+  startDate   DateTime
+  endTime     DateTime
+  columns     BoardColumn[]
+  tickets     BoardTicket[]
+}
+
+model BoardColumn {
+  id       String        @id @default(cuid())
+  position Int
+  label    TicketStatus  @default(TODO)
+  board    Board         @relation(fields: [boardId], references: [id])
+  boardId  String
+  tickets  BoardTicket[]
+}
+
+model BoardTicket {
+  id            String       @id @default(cuid())
+  title         String
+  description   String?
+  boardColumn   BoardColumn  @relation(fields: [boardColumnId], references: [id])
+  boardColumnId String
+  status        TicketStatus
+  board         Board        @relation(fields: [boardId], references: [id])
+  boardId       String
+  storyPoints   Int?
+  position      Int
+  comments      Comment[]
+  assignedUser  User         @relation("assigned", fields: [assignedTo], references: [id])
+  assignedTo    String
+  reportedUser  User         @relation("reported", fields: [reportedBy], references: [id])
+  reportedBy    String
+}
+
+model Comment {
+  id            String      @id @default(cuid())
+  description   String?
+  createdAt     DateTime    @default(now())
+  boardTicket   BoardTicket @relation(fields: [boardTicketId], references: [id])
+  boardTicketId String
+  commenter     User        @relation(fields: [writtenBy], references: [id])
+  writtenBy     String
+}
+
+model User {
+  id              String        @id @default(cuid())
+  name            String
+  email           String
+  emailVerified   Boolean?
+  image           String?
+  comments        Comment[]
+  assignedTicket  BoardTicket[] @relation("assigned")
+  reportedTickets BoardTicket[] @relation("reported")
+}

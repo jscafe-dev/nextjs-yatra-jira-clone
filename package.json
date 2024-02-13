@@ -8,9 +8,14 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest --coverage",
-    "test:watch": "jest --watchAll"
+    "test:watch": "jest --watchAll",
+    "migrate-dev": "prisma migrate dev",
+    "studio": "prisma studio",
+    "tidy": "prisma format",
+    "generate": "prisma generate"
   },
   "dependencies": {
+    "@prisma/client": "^5.9.1",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.1",
     "@testing-library/user-event": "^14.5.2",
@@ -29,6 +34,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "postcss": "^8",
+    "prisma": "^5.9.1",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
   },
