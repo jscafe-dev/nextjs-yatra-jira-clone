@@ -2,10 +2,134 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@import url("../styles/theme.css");
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --Neutral0: rgb(255, 255, 255);
+    --Neutral10: rgb(255, 255, 255);
+    --Neutral100: rgb(247, 248, 249);
+    --Neutral200: rgb(241, 242, 244);
+    --Neutral300: rgb(220, 223, 228);
+    --Neutral400: rgb(179, 185, 196);
+    --Neutral500: rgb(133, 144, 162);
+    --Neutral600: rgb(117, 129, 149);
+    --Neutral700: rgb(98, 111, 134);
+    --Neutral800: rgb(68, 84, 111);
+    --Neutral900: rgb(44, 62, 93);
+    --Neutral1000: rgb(23, 43, 77);
+    --Neutral1100: rgb(9, 30, 66);
+
+    --Neutral100A: rgba(9, 30, 66, 0.03);
+    --Neutral200A: rgba(9, 30, 66, 0.06);
+    --Neutral300A: rgba(9, 30, 66, 0.14);
+    --Neutral400A: rgba(9, 30, 66, 0.31);
+    --Neutral500A: rgba(9, 30, 66, 0.49);
+
+    --DarkNeutralPitch: rgb(16, 18, 20);
+    --DarkNeutral0: rgb(22, 26, 29);
+    --DarkNeutral100: rgb(29, 33, 37);
+    --DarkNeutral200: rgb(34, 39, 43);
+    --DarkNeutral250: rgb(40, 46, 51);
+    --DarkNeutral300: rgb(44, 51, 58);
+    --DarkNeutral350: rgb(56, 65, 74);
+    --DarkNeutral400: rgb(69, 79, 89);
+    --DarkNeutral500: rgb(89, 103, 115);
+    --DarkNeutral600: rgb(115, 132, 150);
+    --DarkNeutral700: rgb(140, 155, 171);
+    --DarkNeutral800: rgb(159, 173, 188);
+    --DarkNeutral900: rgb(182, 194, 207);
+    --DarkNeutral1000: rgb(199, 209, 219);
+    --DarkNeutral1100: rgb(222, 228, 234);
+
+    --DarkNeutralPitchA: rgba(3, 4, 4, 0.26);
+    --DarkNeutral100A: rgba(188, 214, 240, 0.04);
+    --DarkNeutral200A: rgba(161, 189, 217, 0.08);
+    --DarkNeutral250A: rgba(200, 225, 249, 0.1);
+    --DarkNeutral300A: rgba(166, 197, 226, 0.16);
+    --DarkNeutral350A: rgba(195, 222, 254, 0.2);
+    --DarkNeutral400A: rgba(191, 219, 248, 0.28);
+    --DarkNeutral500A: rgba(155, 180, 202, 0.5);
+
+    --Blue200: rgb(204, 224, 255);
+    --Blue300: rgb(133, 184, 255);
+    --Blue400: rgb(87, 157, 255);
+    --Blue500: rgb(56, 139, 255);
+    --Blue600: rgb(29, 122, 252);
+    --Blue700: rgb(12, 102, 228);
+    --Blue800: rgb(0, 85, 204);
+    --Blue900: rgb(9, 50, 108);
+
+    --Red200: rgb(255, 213, 210);
+    --Red300: rgb(253, 152, 145);
+    --Red400: rgb(248, 113, 104);
+    --Red500: rgb(241, 91, 80);
+    --Red600: rgb(226, 72, 61);
+    --Red700: rgb(201, 55, 44);
+    --Red800: rgb(174, 46, 36);
+    --Red900: rgb(93, 31, 26);
+
+    --Orange600: rgb(229, 105, 16);
+    --Orange800: rgb(165, 72, 0);
+
+    --Yellow300: rgb(245, 205, 71);
+    --Yellow400: rgb(226, 178, 3);
+    --Yellow500: rgb(207, 159, 2);
+
+    --Green200: rgb(186, 243, 219);
+    --Green300: rgb(126, 226, 184);
+    --Green400: rgb(75, 206, 151);
+    --Green500: rgb(42, 187, 127);
+    --Green600: rgb(34, 160, 107);
+    --Green700: rgb(31, 132, 90);
+    --Green800: rgb(33, 110, 78);
+    --Green900: rgb(22, 75, 53);
+
+    --Purple200: rgb(223, 216, 253);
+    --Purple300: rgb(184, 172, 246);
+    --Purple400: rgb(159, 143, 239);
+    --Purple500: rgb(143, 126, 231);
+    --Purple600: rgb(130, 112, 219);
+    --Purple700: rgb(110, 93, 198);
+    --Purple800: rgb(94, 77, 178);
+    --Purple900: rgb(53, 44, 99);
+
+    --MediumNeutral: rgb(222, 235, 255);
+    --10121499: rgba(188, 214, 240, 0.04);
+    --navBg: rgb(33, 33, 33);
+    --borderDark: #a6c5e229;
+    --borderLight: #091e4224;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,12 +140,11 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer base {
+  body {
+    @apply bg-neutral-0 dark:bg-darkNeutral-100;
+  }
+  *:focus-visible {
+    @apply outline-none;
+  }
 }

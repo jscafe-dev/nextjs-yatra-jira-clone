@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  /* Text Utils */
+  .text-inverse {
+    @apply text-neutral-10 dark:text-darkNeutral-100;
+  }
+  .text-subtlest {
+    @apply text-neutral-700 dark:text-darkNeutral-700;
+  }
+  .text-subtle {
+    @apply text-neutral-800 dark:text-darkNeutral-800;
+  }
+
+  /* Border colors */
+  .border-base {
+    @apply border-neutral-300A dark:border-darkNeutral-300A;
+  }
+
+  /* Button colors */
+  .button-brand {
+    @apply bg-blue-700 dark:to-blue-400 hover:bg-blue-400 hover:dark:bg-blue-300 active:bg-blue-900 active:dark:bg-blue-200 !important;
+  }
+  .button-danger {
+    @apply bg-red-700 dark:to-red-400 hover:bg-red-800 hover:dark:bg-red-300 active:bg-red-900 active:dark:bg-red-200 !important;
+  }
+  .button-warning {
+    @apply bg-yellow-300 dark:bg-yellow-300 hover:bg-yellow-400 hover:dark:bg-yellow-400 active:bg-yellow-500 active:dark:bg-yellow-500 !important;
+  }
+  .button-success {
+    @apply bg-green-700 dark:bg-green-400 hover:bg-green-800 hover:dark:bg-green-300 active:bg-green-900 active:dark:bg-green-200 !important;
+  }
+  .button-neutral {
+    @apply bg-neutral-200A dark:bg-darkNeutral-200A hover:bg-neutral-300A hover:dark:bg-darkNeutral-300A active:bg-neutral-400A active:dark:bg-darkNeutral-400A !important;
+  }
+  .button-create {
+    @apply bg-mediumNeutral hover:bg-darkNeutral-800 !important;
+  }
+
+  /* Background */
+  .background-neutral-static {
+    @apply bg-neutral-200A dark:bg-darkNeutral-200A !important;
+  }
+  .background-neutral-hover {
+    @apply bg-neutral-300A dark:bg-darkNeutral-300A;
+  }
+  .background-nav {
+    @apply bg-transparent hover:bg-darkNeutral-300A active:bg-darkNeutral-400A !important;
+  }
+  .background-avatar {
+    @apply bg-blue-700 dark:bg-blue-400;
+  }
+  .background-box {
+    @apply bg-red-700 dark:bg-red-400;
+  }
+  .background-card {
+    @apply bg-neutral-0 dark:bg-darkNeutral-200A hover:bg-neutral-300A hover:dark:bg-darkNeutral-300A active:bg-neutral-400A active:dark:bg-darkNeutral-400A;
+  }
+  .background-board-drop {
+    @apply bg-darkNeutral-700 dark:bg-darkNeutral-400 !important;
+  }
+
+  /* Blanket */
+  .blanket {
+    @apply bg-neutral-500A dark:bg-10121499;
+  }
+
+  /* Skeleton */
+  .skeleton {
+    @apply bg-neutral-200A dark:bg-darkNeutral-200A;
+  }
+
+  /* Surface */
+  .surface {
+    @apply bg-neutral-10 dark:bg-darkNeutral-100;
+  }
+  .surface-overlay {
+    @apply bg-neutral-10 dark:bg-darkNeutral-250;
+  }
+
+  /* Side bar */
+  .sidebar-bg {
+    @apply bg-neutral-400A dark:bg-darkNeutral-400A;
+  }
+
+  /* Color Contrast */
+
+  .color-contrast {
+    @apply text-navBg dark:text-neutral-10;
+  }
+
+  /* overlay */
+  .overlay-shadow {
+    @apply shadow-overlay_light dark:shadow-overlay_dark;
+  }
+}

@@ -30,6 +30,7 @@
     "next-auth": "^4.24.6",
     "react": "^18",
     "react-dom": "^18",
+    "tailwindcss-animate": "^1.0.7",
     "ts-jest": "^29.1.2",
     "zod": "^3.22.4"
   },
