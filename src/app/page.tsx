@@ -7,7 +7,7 @@ export default function Home() {
   const { data: session, status } = useSession()
   return (
     <div>
-      <Button onClick={signIn}>Login</Button>
+      <Button onClick={signIn} label="Login" />
       <br />
       {status}
       <pre className='text-inverse'>{JSON.stringify(session)}</pre>
