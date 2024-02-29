@@ -69,7 +69,7 @@
 
   /* Skeleton */
   .skeleton {
-    @apply bg-neutral-200A dark:bg-darkNeutral-200A;
+    @apply bg-neutral-500 dark:bg-darkNeutral-500;
   }
 
   /* Surface */
