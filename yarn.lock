@@ -5065,6 +5065,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vercel/edge-config-fs@npm:0.1.0":
+  version: 0.1.0
+  resolution: "@vercel/edge-config-fs@npm:0.1.0"
+  checksum: 10c0/a3bd58d216832eac6280615b7ae6999a13b63d9f4bc2f9b4d7ffd0263903505862937591026b5e4e1abedecaf07a597595f0b7abe6718176be93585ad393ed3f
+  languageName: node
+  linkType: hard
+
+"@vercel/edge-config@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@vercel/edge-config@npm:1.1.0"
+  dependencies:
+    "@vercel/edge-config-fs": "npm:0.1.0"
+    ts-essentials: "npm:9.4.1"
+  peerDependencies:
+    "@opentelemetry/api": ^1.7.0
+  peerDependenciesMeta:
+    "@opentelemetry/api":
+      optional: true
+  checksum: 10c0/066b254b503091adeb0669fd55d41e220fe4282debd2ac33c8d74ac15a5bfb08e92ff129e99173bd9c1dc0b593c151c6b416e958bf6d7b615d0206a765d4a66e
+  languageName: node
+  linkType: hard
+
 "@vitest/expect@npm:^0.34.2":
   version: 0.34.7
   resolution: "@vitest/expect@npm:0.34.7"
@@ -11828,6 +11850,7 @@ __metadata:
     "@types/node": "npm:^20.11.17"
     "@types/react": "npm:^18"
     "@types/react-dom": "npm:^18"
+    "@vercel/edge-config": "npm:^1.1.0"
     autoprefixer: "npm:^10.0.1"
     eslint: "npm:^8"
     eslint-config-next: "npm:14.0.4"
@@ -15060,6 +15083,18 @@ __metadata:
   version: 2.2.0
   resolution: "ts-dedent@npm:2.2.0"
   checksum: 10c0/175adea838468cc2ff7d5e97f970dcb798bbcb623f29c6088cb21aa2880d207c5784be81ab1741f56b9ac37840cbaba0c0d79f7f8b67ffe61c02634cafa5c303
+  languageName: node
+  linkType: hard
+
+"ts-essentials@npm:9.4.1":
+  version: 9.4.1
+  resolution: "ts-essentials@npm:9.4.1"
+  peerDependencies:
+    typescript: ">=4.1.0"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 10c0/03f195f1f8935c5e72615e05d5ca160aeb987ba23e1f7ffad2dc4ac47604a6931621bf120279c3325513894a2040cee01070f4df95c1e3bac6435c25339eb519
   languageName: node
   linkType: hard
 
