@@ -6,8 +6,6 @@ import { useEffect, useState } from 'react'
 import { NavAvatar } from './NavAvatar'
 import ThemeToggle from './ThemeToggle'
 
-
-import { navData } from '@/lib/navData';
 import { NavDataType } from './nav.type';
 // import { navItemMap } from './navItemMap';
 
@@ -59,7 +57,12 @@ const NavItem = (props: Composition) => {
     </div>
 }
 
-const Navbar = () => {
+interface NavbarInterface {
+    externalNavData?: null | NavDataType
+}
+
+const Navbar = (props: NavbarInterface) => {
+    const { externalNavData = null } = props
     const navItemMap = {
         logo: NavLogo,
         item: NavItem,
@@ -74,8 +77,12 @@ const Navbar = () => {
             const navdata = data.navData as NavDataType
             setNavbarData(navdata)
         }
-        fetchConfig()
-    }, [])
+        if (!externalNavData) {
+            fetchConfig()
+        } else {
+            setNavbarData(externalNavData)
+        }
+    }, [externalNavData])
     return <NavContainer>
         <NavRenderer>
             {navbarData.map((navGroup) => {
