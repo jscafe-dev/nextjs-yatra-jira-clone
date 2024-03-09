@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react"
 
-const useWindowDimensions = () => {
+function useWindowDimensions() {
     const hasWindow = typeof window !== "undefined"
 
     const getWindowDimensions = useCallback(() => {
@@ -32,4 +32,4 @@ const useWindowDimensions = () => {
     return { windowDimensions, isDesktop }
 }
 
-export default useWindowDimensions;
+export { useWindowDimensions };

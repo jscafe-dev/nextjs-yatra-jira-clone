@@ -18,11 +18,12 @@ const NavAvatar = () => {
                     className="h-full w-full rounded-[inherit] object-cover"
                     src={session?.user?.image || ''}
                     alt="Profile Picture"
+                    data-testid="profile_picture"
                     onClick={() => togglePopup(!showPopup)}
                 />
-                <Avatar.Fallback className='animate-pulse skeleton w-full h-full' />
+                <Avatar.Fallback className='animate-pulse skeleton w-full h-full' data-testid="profile_shimmer" />
             </Avatar.Root>}
-            {!isLoading && !isLoggedIn && <button className='cursor-pointer text-inverse button-brand p-2 rounded-sm' onClick={() => signIn()}>
+            {!isLoading && !isLoggedIn && <button className='cursor-pointer text-inverse button-brand p-2 rounded-sm' onClick={() => signIn()} data-testid="login_btn">
                 Login
             </button>}
             {showPopup && <button className='absolute cursor-pointer text-inverse button-brand top-full right-2 p-2 rounded-sm' onClick={() => signOut()}>
