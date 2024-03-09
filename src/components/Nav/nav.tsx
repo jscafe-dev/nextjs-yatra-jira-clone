@@ -1,5 +1,5 @@
 "use client"
-import useWindowDimensions from '@/hooks/useWindowDimensions'
+import customHooks from '@/hooks'
 import { HamburgerMenuIcon } from '@radix-ui/react-icons'
 import type { ReactNode } from 'react';
 import { useEffect, useState } from 'react'
@@ -7,6 +7,7 @@ import { NavAvatar } from './NavAvatar'
 import ThemeToggle from './ThemeToggle'
 
 import { NavDataType } from './nav.type';
+import { useSession } from 'next-auth/react';
 // import { navItemMap } from './navItemMap';
 
 interface Composition {
@@ -15,6 +16,7 @@ interface Composition {
 
 const NavContainer = (props: Composition) => {
     const { children } = props
+    const { useWindowDimensions } = customHooks
     const { isDesktop } = useWindowDimensions()
     const [showNav, toggleNav] = useState(false)
 
@@ -23,7 +25,7 @@ const NavContainer = (props: Composition) => {
     }, [isDesktop])
     return (
         <div className="bg-navBg fixed w-full">
-            {!isDesktop && <HamburgerMenuIcon onClick={() => toggleNav(!showNav)} height={30} width={30} className='ml-auto my-3 mr-3 text-white cursor-pointer' />}
+            {!isDesktop && <HamburgerMenuIcon onClick={() => toggleNav(!showNav)} height={30} width={30} className='ml-auto my-3 mr-3 text-white cursor-pointer' data-testid="hamburger" />}
             {showNav && children}
         </div>
     )
@@ -50,8 +52,14 @@ const NavLogo = (props: Composition) => {
     </div>
 }
 
-const NavItem = (props: Composition) => {
-    const { children } = props
+interface NavItemProps extends Composition {
+    authOnly?: boolean;
+}
+
+const NavItem = (props: NavItemProps) => {
+    const { status } = useSession()
+    const { children, authOnly = false } = props
+    if (authOnly && status !== 'authenticated') return <></>
     return <div className="background-nav text-white sm:mr-3 p-2 border rounded font-semibold border-none">
         {children}
     </div>
@@ -74,6 +82,7 @@ const Navbar = (props: NavbarInterface) => {
         const fetchConfig = async () => {
             const response = await fetch('/api/config')
             const { data } = await response.json()
+            console.log(data)
             const navdata = data.navData as NavDataType
             setNavbarData(navdata)
         }
@@ -89,7 +98,7 @@ const Navbar = (props: NavbarInterface) => {
                 return <NavGroup key={navGroup.id}>
                     {navGroup.items.map((navItem) => {
                         const Item = navItemMap[navItem.type] || <></>
-                        return <Item key={navItem.id}>{navItem.content}</Item>
+                        return <Item key={navItem.id} authOnly={navItem.authOnly}>{navItem.content}</Item>
                     })}
                 </NavGroup>
             })}
