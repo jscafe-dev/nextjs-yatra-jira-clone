@@ -24,7 +24,7 @@ const NavContainer = (props: Composition) => {
         toggleNav(isDesktop)
     }, [isDesktop])
     return (
-        <div className="bg-navBg fixed w-full">
+        <div className="bg-navBg fixed w-full z-[1]">
             {!isDesktop && <HamburgerMenuIcon onClick={() => toggleNav(!showNav)} height={30} width={30} className='ml-auto my-3 mr-3 text-white cursor-pointer' data-testid="hamburger" />}
             {showNav && children}
         </div>
@@ -82,7 +82,6 @@ const Navbar = (props: NavbarInterface) => {
         const fetchConfig = async () => {
             const response = await fetch('/api/config')
             const { data } = await response.json()
-            console.log(data)
             const navdata = data.navData as NavDataType
             setNavbarData(navdata)
         }
