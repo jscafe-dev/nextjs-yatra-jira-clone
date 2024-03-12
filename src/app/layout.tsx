@@ -5,7 +5,7 @@ import AuthProvider from '@/context/authProvider'
 import { ThemeProvider } from '@/context/themeProvider'
 const inter = Inter({ subsets: ['latin'] })
 import { Navbar } from '@/components/Nav'
-import { SideNav } from '@/components/SideNav'
+import { SideNav, SideNavMobile } from '@/components/SideNav'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -29,6 +29,9 @@ export default function RootLayout({
           <AuthProvider>
             <Navbar />
             <SideNav />
+            <SideNavMobile>
+              <SideNav isMobileView />
+            </SideNavMobile>
             {children}
           </AuthProvider>
 
