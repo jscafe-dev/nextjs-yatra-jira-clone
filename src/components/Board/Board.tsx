@@ -5,6 +5,7 @@ import type { OnDragEndResponder } from '@hello-pangea/dnd'
 import { Ticket } from "./index"
 import { useState } from "react";
 import cx from 'classnames'
+import { updateTicketAtBackend } from "@/app/actions/board";
 interface BoardTicketWithUser extends BoardTicket {
     assignedUser: {
         name: string;
@@ -25,7 +26,6 @@ const Board = (props: BoardProps) => {
     }
 
     const handleDragEnd: OnDragEndResponder = (result) => {
-        console.log("vedant drag end", result)
         const currentTickets = JSON.parse(JSON.stringify(tickets))
         const updatedTickets = currentTickets.map((ticket: BoardTicketWithUser) => {
             if (ticket.id === result.draggableId) {
@@ -38,6 +38,7 @@ const Board = (props: BoardProps) => {
             return ticket
         })
         setTickets(updatedTickets)
+        updateTicketAtBackend(updatedTickets)
     }
     return (
         <DragDropContext
