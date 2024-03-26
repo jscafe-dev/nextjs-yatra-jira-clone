@@ -8,6 +8,7 @@ import ThemeToggle from './ThemeToggle'
 
 import { NavDataType } from './nav.type';
 import { useSession } from 'next-auth/react';
+import { NavCreate } from './navCreate';
 // import { navItemMap } from './navItemMap';
 
 interface Composition {
@@ -76,6 +77,7 @@ const Navbar = (props: NavbarInterface) => {
         item: NavItem,
         avatar: NavAvatar,
         themToggle: ThemeToggle,
+        create: NavCreate
     };
     const [navbarData, setNavbarData] = useState<NavDataType>([])
     useEffect(() => {
