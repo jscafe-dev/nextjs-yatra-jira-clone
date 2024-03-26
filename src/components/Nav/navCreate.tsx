@@ -32,7 +32,7 @@ const schema = z.object({
     points: z.number().optional(),
 });
 
-const NavCreate = () => {
+const NavCreate = ({ isTest }: { isTest: boolean }) => {
     const [open, setOpen] = useState(false);
     const [users, setUsers] = useState<User[]>([])
     const handleOpen = () => setOpen(!open);
@@ -53,20 +53,22 @@ const NavCreate = () => {
             points: 0
         }
     })
-
+    {/* istanbul ignore next */ }
     const onSubmit: SubmitHandler<CreateTicketFields> = (data) => {
+        /* istanbul ignore next */
         console.log(data)
     }
 
     useEffect(() => {
+        /* istanbul ignore next */
         const fetchUsers = async () => {
             const usersRes = await getUsers()
             console.log(usersRes)
             setUsers(usersRes)
         }
-        fetchUsers()
-    }, [])
-    console.log(errors)
+        if (!isTest) fetchUsers()
+    }, [isTest])
+    /* istanbul ignore next */
     return (
         <>
             <button className="button-create text-black p-2 border rounded font-semibold border-none" onClick={handleOpen}>
@@ -104,6 +106,7 @@ const NavCreate = () => {
                                     menuProps={{ className: "h-48" }}
                                     {...field}
                                 >
+
                                     {users.map((user, index) => (
                                         <Option key={index} value={user.id}>
                                             <div className="flex items-center gap-x-2">

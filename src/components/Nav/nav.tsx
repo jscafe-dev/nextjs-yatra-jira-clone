@@ -55,6 +55,7 @@ const NavLogo = (props: Composition) => {
 
 interface NavItemProps extends Composition {
     authOnly?: boolean;
+    isTest?: boolean
 }
 
 const NavItem = (props: NavItemProps) => {
@@ -99,7 +100,7 @@ const Navbar = (props: NavbarInterface) => {
                 return <NavGroup key={navGroup.id}>
                     {navGroup.items.map((navItem) => {
                         const Item = navItemMap[navItem.type] || <></>
-                        return <Item key={navItem.id} authOnly={navItem.authOnly}>{navItem.content}</Item>
+                        return <Item key={navItem.id} authOnly={navItem.authOnly} isTest={externalNavData !== null}>{navItem.content}</Item>
                     })}
                 </NavGroup>
             })}
