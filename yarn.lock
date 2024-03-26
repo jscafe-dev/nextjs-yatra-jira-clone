@@ -1938,6 +1938,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hookform/resolvers@npm:^3.3.4":
+  version: 3.3.4
+  resolution: "@hookform/resolvers@npm:3.3.4"
+  peerDependencies:
+    react-hook-form: ^7.0.0
+  checksum: 10c0/f7a5b8ba59cbb0859e7a212bd5cbcbc70bbdddd21d4fbe9f4a96d149b5756470cb29857a50334d8c1c64392e21007ccf5288d26aa407431784d4006a2570cb36
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.11.13":
   version: 0.11.14
   resolution: "@humanwhocodes/config-array@npm:0.11.14"
@@ -12108,6 +12117,7 @@ __metadata:
   dependencies:
     "@auth/prisma-adapter": "npm:^1.4.0"
     "@hello-pangea/dnd": "npm:^16.5.0"
+    "@hookform/resolvers": "npm:^3.3.4"
     "@material-tailwind/react": "npm:^2.1.9"
     "@prisma/client": "npm:^5.10.2"
     "@radix-ui/react-avatar": "npm:^1.0.4"
@@ -12143,6 +12153,7 @@ __metadata:
     prisma: "npm:^5.10.2"
     react: "npm:^18"
     react-dom: "npm:^18"
+    react-hook-form: "npm:^7.51.1"
     storybook: "npm:7.6.13"
     tailwindcss: "npm:^3.3.0"
     tailwindcss-animate: "npm:^1.0.7"
@@ -13653,6 +13664,15 @@ __metadata:
     react: ^0.14.8 || ^15.0.1 || ^16.0.0 || ^17.0.1 || ^18.0.0
     react-dom: ^0.14.8 || ^15.0.1 || ^16.0.0 || ^17.0.1 || ^18.0.0
   checksum: 10c0/0d60a0ea758529c32a706d0c69d70b69fb94de3c46442fffdee34f08f51ffceddbb5395b41dfd1565895653e9f60f98ca525835be9d5db1f16d6b22be12f4cd4
+  languageName: node
+  linkType: hard
+
+"react-hook-form@npm:^7.51.1":
+  version: 7.51.1
+  resolution: "react-hook-form@npm:7.51.1"
+  peerDependencies:
+    react: ^16.8.0 || ^17 || ^18
+  checksum: 10c0/f0acbf27fc548d3cd0e4db40b84d9dfe6c24209e4421fffbd422da15e32cc98f877ab0af9e06cb1deaf4205ec655b56020ff9f8b2bae6ada5e619890f174c374
   languageName: node
   linkType: hard
 
