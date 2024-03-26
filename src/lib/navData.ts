@@ -30,6 +30,11 @@ export const navData = [
         content: "Filters",
         authOnly: true,
       },
+      {
+        id: 4,
+        type: "create",
+        authOnly: true,
+      },
     ],
   },
   {
