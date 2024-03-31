@@ -62,7 +62,7 @@ const NavCreate = ({ isTest }: { isTest: boolean }) => {
     {/* istanbul ignore next */ }
     const onSubmit: SubmitHandler<CreateTicketFields> = async (data) => {
         /* istanbul ignore next */
-        await createTicket({ title: data.title, description: data.description, boardId, storyPoints: data.points, assignedTo: data.assignee, reportedBy: session?.user.id })
+        await createTicket({ title: data.title, description: data.description, boardId, storyPoints: data.points, assignedTo: data.assignee, reportedBy: session?.user.id || '' })
         setOpen(false)
     }
 
