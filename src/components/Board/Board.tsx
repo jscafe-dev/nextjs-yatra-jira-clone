@@ -3,7 +3,7 @@ import type { BoardColumn, BoardTicket, User } from "@prisma/client"
 import { DragDropContext, Droppable } from '@hello-pangea/dnd';
 import type { OnDragEndResponder } from '@hello-pangea/dnd'
 import { Ticket } from "./index"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import cx from 'classnames'
 import { updateTicketAtBackend } from "@/app/actions/board";
 interface BoardTicketWithUser extends BoardTicket {
@@ -20,11 +20,13 @@ interface BoardProps {
 
 const Board = (props: BoardProps) => {
     const { boardColumns, boardTickets } = props
-    const [tickets, setTickets] = useState(boardTickets)
+    const [tickets, setTickets] = useState<BoardTicketWithUser[]>([])
     const fetTicketForColumn = (columnId: string) => {
         return tickets.filter((ticket) => ticket.boardColumnId === columnId).sort((a, b) => a.position - b.position)
     }
-
+    useEffect(() => {
+        setTickets(boardTickets)
+    }, [boardTickets])
     const handleDragEnd: OnDragEndResponder = (result) => {
         const currentTickets = JSON.parse(JSON.stringify(tickets))
         const updatedTickets = currentTickets.map((ticket: BoardTicketWithUser) => {

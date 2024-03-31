@@ -20,6 +20,23 @@ export const authOptions: NextAuthOptions = {
     }),
     // ...add more providers here
   ],
+  callbacks: {
+    async session({ session }) {
+      if (session.user?.email) {
+        const userId = await prisma.user.findUnique({
+          where: {
+            email: session.user?.email,
+          },
+          select: {
+            id: true,
+          },
+        });
+
+        session.user.id = userId?.id;
+      }
+      return session;
+    },
+  },
 };
 
 // Use it in server contexts
