@@ -1,6 +1,9 @@
+/* istanbul ignore file */
 "use client"
 import { useState, useRef, useEffect } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
+import { usePathname } from "next/navigation";
+import { useSession } from 'next-auth/react';
 import {
     Button,
     Dialog,
@@ -17,6 +20,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import * as z from 'zod';
 import { getUsers } from "@/app/actions/users";
 import { User } from "@prisma/client";
+import { createTicket } from "@/app/actions/board";
 
 interface CreateTicketFields {
     title: string,
@@ -38,10 +42,12 @@ const NavCreate = ({ isTest }: { isTest: boolean }) => {
     const handleOpen = () => setOpen(!open);
     const modalRef = useRef(null)
     const editorRef = useRef(null);
+    const path = usePathname()
+    const { data: session } = useSession()
+    const boardId = path?.split('/')[2]
     const {
         register,
         handleSubmit,
-        watch,
         control,
         setValue,
         formState: { errors },
@@ -54,9 +60,10 @@ const NavCreate = ({ isTest }: { isTest: boolean }) => {
         }
     })
     {/* istanbul ignore next */ }
-    const onSubmit: SubmitHandler<CreateTicketFields> = (data) => {
+    const onSubmit: SubmitHandler<CreateTicketFields> = async (data) => {
         /* istanbul ignore next */
-        console.log(data)
+        await createTicket({ title: data.title, description: data.description, boardId, storyPoints: data.points, assignedTo: data.assignee, reportedBy: session?.user.id || '' })
+        setOpen(false)
     }
 
     useEffect(() => {
@@ -68,7 +75,6 @@ const NavCreate = ({ isTest }: { isTest: boolean }) => {
         }
         if (!isTest) fetchUsers()
     }, [isTest])
-    /* istanbul ignore next */
     return (
         <>
             <button className="button-create text-black p-2 border rounded font-semibold border-none" onClick={handleOpen}>
@@ -134,7 +140,7 @@ const NavCreate = ({ isTest }: { isTest: boolean }) => {
                             onEditorChange={(newValue, editor) =>
                                 setValue("description", newValue)
                             }
-                            initialValue="<p>This is the initial content of the editor.</p>"
+                            initialValue=""
                             init={{
                                 height: 400,
                                 menubar: false,

@@ -41,6 +41,8 @@ model BoardColumn {
   board    Board         @relation(fields: [boardId], references: [id])
   boardId  String
   tickets  BoardTicket[]
+
+  @@unique([label, boardId])
 }
 
 model BoardTicket {

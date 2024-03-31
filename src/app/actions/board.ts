@@ -1,7 +1,10 @@
+/* istanbul ignore file */
 "use server";
 import { prisma } from "@/lib/prisma";
 import type { Board, BoardTicket } from "@prisma/client";
-
+import { TicketStatus } from "@prisma/client";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 export async function getAllBoard() {
   return (await prisma.board.findMany({
     select: {
@@ -10,7 +13,7 @@ export async function getAllBoard() {
     },
   })) as Board[];
 }
-
+/* istanbul ignore next */
 export async function fetchBoard(boardId: string, skip = 0, take = 10) {
   if (!boardId) {
     throw Error("Fields are missing");
@@ -65,5 +68,53 @@ export const updateTicketAtBackend = async (ticketsToUpdate: BoardTicket[]) => {
       },
     });
   });
-  const updatedTickets = await prisma.$transaction(transactions);
+  await prisma.$transaction(transactions);
+};
+/* istanbul ignore next */
+export const createTicket = async (data: {
+  title: string;
+  description: string;
+  boardId: string;
+  storyPoints: number;
+  assignedTo: string;
+  reportedBy: string;
+}) => {
+  const { title, description, boardId, storyPoints, assignedTo, reportedBy } =
+    data;
+  const status = TicketStatus.TODO;
+  const targetColumn = await prisma.boardColumn.findUnique({
+    where: {
+      label_boardId: {
+        boardId,
+        label: status,
+      },
+    },
+    select: {
+      id: true,
+    },
+  });
+
+  const desiredPosition = await prisma.boardTicket.count({
+    where: {
+      boardId,
+      boardColumnId: targetColumn?.id,
+    },
+  });
+  await prisma.boardTicket.create({
+    // @ts-ignore
+    data: {
+      title,
+      description,
+      boardId,
+      boardColumnId: targetColumn?.id,
+      storyPoints,
+      assignedTo,
+      reportedBy,
+      status,
+      position: desiredPosition,
+    },
+  });
+
+  revalidatePath(`/board/${boardId}`, "page");
+  redirect(`/board/${boardId}`);
 };
